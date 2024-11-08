@@ -30,6 +30,7 @@ const AddMatch: React.FC<AddMatchProps> = ({ onStartMatch }) => {
           value={homeTeam}
           onChange={setHomeTeam}
           ariaLabel="Home team score input"
+          placeholder="Home team"
           required
         />
       </div>
@@ -40,6 +41,7 @@ const AddMatch: React.FC<AddMatchProps> = ({ onStartMatch }) => {
           value={awayTeam}
           onChange={setAwayTeam}
           ariaLabel="Away team score input"
+          placeholder="Away team"
         />
       </div>
       <Button

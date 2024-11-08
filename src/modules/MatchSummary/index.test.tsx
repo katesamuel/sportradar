@@ -37,7 +37,6 @@ describe("MatchSummary Component", () => {
       />
     );
 
-    // Check if match data is rendered
     expect(screen.getByText(/Team A vs Team B/)).toBeInTheDocument();
     expect(screen.getByText(/1-2/)).toBeInTheDocument();
     expect(screen.getByText(/Team C vs Team D/)).toBeInTheDocument();

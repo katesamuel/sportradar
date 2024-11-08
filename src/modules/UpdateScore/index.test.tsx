@@ -22,8 +22,8 @@ describe("UpdateScore Component", () => {
       />
     );
 
-    const homeScoreInput = screen.getByLabelText("Home Team Score Input");
-    const awayScoreInput = screen.getByLabelText("Away Team Score Input");
+    const homeScoreInput = screen.getByPlaceholderText("Home score");
+    const awayScoreInput = screen.getByPlaceholderText("Away score");
     const updateButton = screen.getByRole("button", { name: /update score/i });
 
     expect(homeScoreInput).toHaveValue(1); // The initial home score should be 1
@@ -39,16 +39,14 @@ describe("UpdateScore Component", () => {
       />
     );
 
-    const homeScoreInput = screen.getByLabelText("Home Team Score Input");
-    const awayScoreInput = screen.getByLabelText("Away Team Score Input");
+    const homeScoreInput = screen.getByPlaceholderText("Home score");
+    const awayScoreInput = screen.getByPlaceholderText("Away score");
     const updateButton = screen.getByRole("button", { name: /update score/i });
 
     fireEvent.change(homeScoreInput, { target: { value: "3" } });
     fireEvent.change(awayScoreInput, { target: { value: "4" } });
 
     fireEvent.click(updateButton);
-
-    // Check if onUpdateScore was called with the updated values
     expect(mockOnUpdateScore).toHaveBeenCalledWith(3, 4);
   });
 
@@ -57,13 +55,13 @@ describe("UpdateScore Component", () => {
       <UpdateScore selectedMatch={null} onUpdateScore={mockOnUpdateScore} />
     );
 
-    const homeScoreInput = screen.getByLabelText("Home Team Score Input");
-    const awayScoreInput = screen.getByLabelText("Away Team Score Input");
+    const homeScoreInput = screen.getByPlaceholderText("Home score");
+    const awayScoreInput = screen.getByPlaceholderText("Away score");
     const updateButton = screen.getByRole("button", { name: /update score/i });
 
-    expect(homeScoreInput).toBeDisabled(); // The input should be disabled
-    expect(awayScoreInput).toBeDisabled(); // The input should be disabled
-    expect(updateButton).toBeDisabled(); // The update button should be disabled
+    expect(homeScoreInput).toBeDisabled(); 
+    expect(awayScoreInput).toBeDisabled(); 
+    expect(updateButton).toBeDisabled(); 
   });
 
   test("initializes score inputs with selected match values", () => {
@@ -74,10 +72,10 @@ describe("UpdateScore Component", () => {
       />
     );
 
-    const homeScoreInput = screen.getByLabelText("Home Team Score Input");
-    const awayScoreInput = screen.getByLabelText("Away Team Score Input");
+    const homeScoreInput = screen.getByPlaceholderText("Home score");
+    const awayScoreInput = screen.getByPlaceholderText("Away score");
 
-    expect(homeScoreInput).toHaveValue(1); // Initial home score should be 1
-    expect(awayScoreInput).toHaveValue(2); // Initial away score should be 2
+    expect(homeScoreInput).toHaveValue(1); 
+    expect(awayScoreInput).toHaveValue(2); 
   });
 });

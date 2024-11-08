@@ -30,7 +30,7 @@ const UpdateScore: React.FC<UpdateScoreProps> = ({
   return (
     <form onSubmit={handleSubmit} className="update-match">
       <div className="label-input">
-        <label>Home Score:</label>
+        <label htmlFor="home-score">Home Score:</label>
         {selectedMatch?.homeTeam}
         <Input
           type="number"
@@ -38,10 +38,11 @@ const UpdateScore: React.FC<UpdateScoreProps> = ({
           onChange={setHomeScore}
           disabled={!selectedMatch}
           aria-label="Home Team Score Input"
+          placeholder="Home score"
         />
       </div>
       <div className="label-input">
-        <label>Away Score:</label>
+        <label htmlFor="away-score">Away Score:</label>
         {selectedMatch?.awayTeam}
         <Input
           type="number"
@@ -49,6 +50,7 @@ const UpdateScore: React.FC<UpdateScoreProps> = ({
           onChange={setAwayScore}
           disabled={!selectedMatch}
           aria-label="Away Team Score Input"
+          placeholder="Away score"
         />
       </div>
 

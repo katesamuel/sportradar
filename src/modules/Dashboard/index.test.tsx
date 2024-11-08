@@ -19,21 +19,21 @@ describe('Dashboard component', () => {
   test('renders correctly', () => {
     render(<Dashboard />);
     expect(screen.getByText(/Live Football World Cup Scoreboard/i)).toBeInTheDocument();
-    expect(screen.getByText(/Add Match/i)).toBeInTheDocument(); // Assuming the AddMatch component has this text
-    expect(screen.getByText(/Update Score/i)).toBeInTheDocument(); // Assuming UpdateScore component has this text
-    expect(screen.getByText(/Match Summary/i)).toBeInTheDocument(); // Assuming MatchSummary component has this text
+    expect(screen.getByText(/Start Match/i)).toBeInTheDocument(); 
+    expect(screen.getByText(/Update Score/i)).toBeInTheDocument(); 
+    expect(screen.getByText(/Match Summary/i)).toBeInTheDocument(); 
   });
 
   test('handles starting a new match', () => {
     render(<Dashboard />);
     
-    const homeTeamInput = screen.getByPlaceholderText(/Home team/i); // Assuming AddMatch form has this placeholder
-    const awayTeamInput = screen.getByPlaceholderText(/Away team/i); // Assuming AddMatch form has this placeholder
-    const addMatchButton = screen.getByText(/Add Match/i); // Assuming there's a button to add match
+    const homeTeamInput = screen.getByPlaceholderText(/Home team/i); 
+    const awayTeamInput = screen.getByPlaceholderText(/Away team/i); 
+    const startMatchButton = screen.getByText(/Start Match/i); 
 
     fireEvent.change(homeTeamInput, { target: { value: 'Team A' } });
     fireEvent.change(awayTeamInput, { target: { value: 'Team B' } });
-    fireEvent.click(addMatchButton);
+    fireEvent.click(startMatchButton);
 
     expect(mockedStartMatch).toHaveBeenCalledWith('Team A', 'Team B');
     expect(mockedGetMatchSummary).toHaveBeenCalled();
@@ -43,15 +43,19 @@ describe('Dashboard component', () => {
     mockedGetMatchSummary.mockReturnValue([{ homeTeam: 'Team A', awayTeam: 'Team B', homeScore: 0, awayScore: 0, startedAt: Date.now(), isSelected: true }]);
     render(<Dashboard />);
 
-    const homeScoreInput = screen.getByPlaceholderText(/Home Score/i); // Assuming UpdateScore form has this placeholder
-    const awayScoreInput = screen.getByPlaceholderText(/Away Score/i); // Assuming UpdateScore form has this placeholder
-    const updateScoreButton = screen.getByText(/Update Score/i); // Assuming there's a button to update score
+    // eslint-disable-next-line testing-library/no-node-access
+    const firstMatch = screen.getAllByRole("listitem")[0].firstElementChild;
+    if (firstMatch) fireEvent.click(firstMatch);
+
+    const homeScoreInput = screen.getByPlaceholderText(/Home Score/i); 
+    const awayScoreInput = screen.getByPlaceholderText(/Away Score/i); 
+    const updateScoreButton = screen.getByText(/Update Score/i); 
 
     fireEvent.change(homeScoreInput, { target: { value: '1' } });
     fireEvent.change(awayScoreInput, { target: { value: '2' } });
     fireEvent.click(updateScoreButton);
 
-    expect(mockedUpdateScore).toHaveBeenCalledWith(1, 2, 0); // Assuming match index is 0
+    expect(mockedUpdateScore).toHaveBeenCalledWith(1, 2, 0); 
     expect(mockedGetMatchSummary).toHaveBeenCalled();
   });
 
@@ -59,11 +63,11 @@ describe('Dashboard component', () => {
     mockedGetMatchSummary.mockReturnValue([{ homeTeam: 'Team A', awayTeam: 'Team B', homeScore: 0, awayScore: 0, startedAt: Date.now() }]);
     render(<Dashboard />);
 
-    const finishMatchButton = screen.getByText(/Finish Match/i); // Assuming each match has a finish button
+    const finishMatchButton = screen.getByText(/Finish Match/i); 
 
     fireEvent.click(finishMatchButton);
 
-    expect(mockedFinishMatch).toHaveBeenCalledWith(0); // Assuming match index is 0
+    expect(mockedFinishMatch).toHaveBeenCalledWith(0); 
     expect(mockedGetMatchSummary).toHaveBeenCalled();
   });
 
@@ -71,11 +75,11 @@ describe('Dashboard component', () => {
     mockedGetMatchSummary.mockReturnValue([{ homeTeam: 'Team A', awayTeam: 'Team B', homeScore: 0, awayScore: 0, startedAt: Date.now() }]);
     render(<Dashboard />);
 
-    const matchElement = screen.getByText(/Team A vs Team B/i); // Assuming MatchSummary lists matches this way
+    const matchElement = screen.getByText(/Team A vs Team B/i); 
 
     fireEvent.click(matchElement);
 
-    expect(mockedSetSelectedMatch).toHaveBeenCalledWith(0); // Assuming match index is 0
+    expect(mockedSetSelectedMatch).toHaveBeenCalledWith(0); 
     expect(mockedGetMatchSummary).toHaveBeenCalled();
   });
 });
