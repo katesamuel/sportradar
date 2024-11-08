@@ -1,0 +1,71 @@
+/* Base styles for the button */
+.shared-button {
+    padding: 12px 20px;
+    border-radius: 8px;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s, transform 0.2s ease-in-out;
+    text-align: center;
+    display: inline-block;
+    text-transform: uppercase;
+    box-sizing: border-box;
+    max-height: fit-content;
+    align-self: center;
+  }
+  
+  /* Button variants */
+  .shared-button.primary {
+    background-color: #007bff; /* Blue */
+  }
+  
+  .shared-button.primary:hover {
+    background-color: #0056b3; /* Darker Blue */
+  }
+  
+  .shared-button.secondary {
+    background-color: #6c757d; /* Gray */
+  }
+  
+  .shared-button.secondary:hover {
+    background-color: #565e64; /* Darker Gray */
+  }
+  
+  .shared-button.danger {
+    background-color: #dc3545; /* Red */
+  }
+  
+  .shared-button.danger:hover {
+    background-color: #a71d2a; /* Darker Red */
+  }
+  
+  /* Hover effects */
+  .shared-button:hover {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px); /* Lift effect */
+  }
+  
+  /* Disabled state */
+  .shared-button:disabled {
+    background-color: #d1d1d1;
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 768px) {
+    .shared-button {
+      font-size: 14px;
+      padding: 10px 16px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .shared-button {
+      font-size: 12px;
+      padding: 8px 12px;
+    }
+  }
+  

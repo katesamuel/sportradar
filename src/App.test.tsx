@@ -1,9 +1,9 @@
 // App.test.js
 import { render, screen } from '@testing-library/react';
 import App from './App';
-import './pages/Dashboard/Dashboard';
+import './modules/Dashboard';
 
-jest.mock('./pages/Dashboard/Dashboard', () => () => <div data-testid="dashboard">Dashboard Component</div>);
+jest.mock('./modules/Dashboard', () => () => <div data-testid="dashboard">Dashboard Component</div>);
 
 describe('App component', () => {
   test('renders the Dashboard component', () => {

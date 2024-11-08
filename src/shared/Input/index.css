@@ -1,0 +1,29 @@
+.shared-input {
+    width: 100%;
+    max-width: 400px; /* Sets a maximum width for larger screens */
+    padding: 12px 16px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    outline: none;
+    box-sizing: border-box; /* Ensures padding does not increase width */
+  }
+  
+  .shared-input:focus {
+    border-color: #6200ea; /* Purple border color on focus */
+    box-shadow: 0 0 8px rgba(98, 0, 234, 0.5); /* Glowing purple outline */
+  }
+  
+  .shared-input::placeholder {
+    color: #aaa; /* Placeholder text color */
+    font-style: italic;
+  }
+  
+  /* Responsive font size for smaller screens */
+  @media (max-width: 600px) {
+    .shared-input {
+      font-size: 14px; /* Adjusts font size on smaller screens */
+      padding: 10px 14px; /* Adjusts padding for smaller devices */
+    }
+  }
